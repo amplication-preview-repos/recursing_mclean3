@@ -11,14 +11,26 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { EnumAvailabilityDayOfWeek } from "./EnumAvailabilityDayOfWeek";
+import { IsEnum, IsOptional, ValidateNested } from "class-validator";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { Type } from "class-transformer";
-import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
 import { TutorWhereUniqueInput } from "../../tutor/base/TutorWhereUniqueInput";
 
 @InputType()
 class AvailabilityWhereInput {
+  @ApiProperty({
+    required: false,
+    enum: EnumAvailabilityDayOfWeek,
+  })
+  @IsEnum(EnumAvailabilityDayOfWeek)
+  @IsOptional()
+  @Field(() => EnumAvailabilityDayOfWeek, {
+    nullable: true,
+  })
+  dayOfWeek?: "Option1";
+
   @ApiProperty({
     required: false,
     type: DateTimeNullableFilter,

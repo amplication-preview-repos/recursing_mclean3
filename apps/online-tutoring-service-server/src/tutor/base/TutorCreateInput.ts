@@ -15,6 +15,7 @@ import { AvailabilityCreateNestedManyWithoutTutorsInput } from "./AvailabilityCr
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { LessonCreateNestedManyWithoutTutorsInput } from "./LessonCreateNestedManyWithoutTutorsInput";
+import { NonAvailabilityCreateNestedManyWithoutTutorsInput } from "./NonAvailabilityCreateNestedManyWithoutTutorsInput";
 
 @InputType()
 class TutorCreateInput {
@@ -41,6 +42,18 @@ class TutorCreateInput {
     nullable: true,
   })
   lessons?: LessonCreateNestedManyWithoutTutorsInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => NonAvailabilityCreateNestedManyWithoutTutorsInput,
+  })
+  @ValidateNested()
+  @Type(() => NonAvailabilityCreateNestedManyWithoutTutorsInput)
+  @IsOptional()
+  @Field(() => NonAvailabilityCreateNestedManyWithoutTutorsInput, {
+    nullable: true,
+  })
+  nonAvailabilities?: NonAvailabilityCreateNestedManyWithoutTutorsInput;
 }
 
 export { TutorCreateInput as TutorCreateInput };

@@ -24,6 +24,8 @@ import { AvailabilityFindManyArgs } from "../../availability/base/AvailabilityFi
 import { Availability } from "../../availability/base/Availability";
 import { LessonFindManyArgs } from "../../lesson/base/LessonFindManyArgs";
 import { Lesson } from "../../lesson/base/Lesson";
+import { NonAvailabilityFindManyArgs } from "../../nonAvailability/base/NonAvailabilityFindManyArgs";
+import { NonAvailability } from "../../nonAvailability/base/NonAvailability";
 import { TutorService } from "../tutor.service";
 @graphql.Resolver(() => Tutor)
 export class TutorResolverBase {
@@ -117,6 +119,20 @@ export class TutorResolverBase {
     @graphql.Args() args: LessonFindManyArgs
   ): Promise<Lesson[]> {
     const results = await this.service.findLessons(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @graphql.ResolveField(() => [NonAvailability], { name: "nonAvailabilities" })
+  async findNonAvailabilities(
+    @graphql.Parent() parent: Tutor,
+    @graphql.Args() args: NonAvailabilityFindManyArgs
+  ): Promise<NonAvailability[]> {
+    const results = await this.service.findNonAvailabilities(parent.id, args);
 
     if (!results) {
       return [];

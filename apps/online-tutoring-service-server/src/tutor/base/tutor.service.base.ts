@@ -16,6 +16,7 @@ import {
   Tutor as PrismaTutor,
   Availability as PrismaAvailability,
   Lesson as PrismaLesson,
+  NonAvailability as PrismaNonAvailability,
 } from "@prisma/client";
 
 export class TutorServiceBase {
@@ -71,5 +72,16 @@ export class TutorServiceBase {
         where: { id: parentId },
       })
       .lessons(args);
+  }
+
+  async findNonAvailabilities(
+    parentId: string,
+    args: Prisma.NonAvailabilityFindManyArgs
+  ): Promise<PrismaNonAvailability[]> {
+    return this.prisma.tutor
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .nonAvailabilities(args);
   }
 }

@@ -15,6 +15,7 @@ import { Availability } from "../../availability/base/Availability";
 import { ValidateNested, IsOptional, IsDate, IsString } from "class-validator";
 import { Type } from "class-transformer";
 import { Lesson } from "../../lesson/base/Lesson";
+import { NonAvailability } from "../../nonAvailability/base/NonAvailability";
 
 @ObjectType()
 class Tutor {
@@ -51,6 +52,15 @@ class Tutor {
   @Type(() => Lesson)
   @IsOptional()
   lessons?: Array<Lesson>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [NonAvailability],
+  })
+  @ValidateNested()
+  @Type(() => NonAvailability)
+  @IsOptional()
+  nonAvailabilities?: Array<NonAvailability>;
 
   @ApiProperty({
     required: true,

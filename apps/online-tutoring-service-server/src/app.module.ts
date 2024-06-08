@@ -1,14 +1,15 @@
 import { RabbitMQModule } from "./rabbitmq/rabbitmq.module";
 import { Module } from "@nestjs/common";
-import { TutorModule } from "./tutor/tutor.module";
 import { StudentModule } from "./student/student.module";
-import { EnrollmentModule } from "./enrollment/enrollment.module";
+import { TutorModule } from "./tutor/tutor.module";
 import { CourseModule } from "./course/course.module";
-import { MessageModule } from "./message/message.module";
+import { EnrollmentModule } from "./enrollment/enrollment.module";
 import { ChatModule } from "./chat/chat.module";
+import { MessageModule } from "./message/message.module";
 import { UserModule } from "./user/user.module";
 import { AvailabilityModule } from "./availability/availability.module";
 import { LessonModule } from "./lesson/lesson.module";
+import { NonAvailabilityModule } from "./nonAvailability/nonAvailability.module";
 import { ZoomIntegrationModule } from "./ZoomIntegration/zoomintegration.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
@@ -23,15 +24,16 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
   controllers: [],
   imports: [
     RabbitMQModule,
-    TutorModule,
     StudentModule,
-    EnrollmentModule,
+    TutorModule,
     CourseModule,
-    MessageModule,
+    EnrollmentModule,
     ChatModule,
+    MessageModule,
     UserModule,
     AvailabilityModule,
     LessonModule,
+    NonAvailabilityModule,
     ZoomIntegrationModule,
     HealthModule,
     PrismaModule,

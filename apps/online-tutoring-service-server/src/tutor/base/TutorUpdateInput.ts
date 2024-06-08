@@ -15,6 +15,7 @@ import { AvailabilityUpdateManyWithoutTutorsInput } from "./AvailabilityUpdateMa
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { LessonUpdateManyWithoutTutorsInput } from "./LessonUpdateManyWithoutTutorsInput";
+import { NonAvailabilityUpdateManyWithoutTutorsInput } from "./NonAvailabilityUpdateManyWithoutTutorsInput";
 
 @InputType()
 class TutorUpdateInput {
@@ -41,6 +42,18 @@ class TutorUpdateInput {
     nullable: true,
   })
   lessons?: LessonUpdateManyWithoutTutorsInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => NonAvailabilityUpdateManyWithoutTutorsInput,
+  })
+  @ValidateNested()
+  @Type(() => NonAvailabilityUpdateManyWithoutTutorsInput)
+  @IsOptional()
+  @Field(() => NonAvailabilityUpdateManyWithoutTutorsInput, {
+    nullable: true,
+  })
+  nonAvailabilities?: NonAvailabilityUpdateManyWithoutTutorsInput;
 }
 
 export { TutorUpdateInput as TutorUpdateInput };

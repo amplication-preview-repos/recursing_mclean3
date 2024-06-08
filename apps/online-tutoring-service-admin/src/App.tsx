@@ -5,30 +5,30 @@ import { theme } from "./theme/theme";
 import Login from "./Login";
 import "./App.scss";
 import Dashboard from "./pages/Dashboard";
-import { TutorList } from "./tutor/TutorList";
-import { TutorCreate } from "./tutor/TutorCreate";
-import { TutorEdit } from "./tutor/TutorEdit";
-import { TutorShow } from "./tutor/TutorShow";
 import { StudentList } from "./student/StudentList";
 import { StudentCreate } from "./student/StudentCreate";
 import { StudentEdit } from "./student/StudentEdit";
 import { StudentShow } from "./student/StudentShow";
-import { EnrollmentList } from "./enrollment/EnrollmentList";
-import { EnrollmentCreate } from "./enrollment/EnrollmentCreate";
-import { EnrollmentEdit } from "./enrollment/EnrollmentEdit";
-import { EnrollmentShow } from "./enrollment/EnrollmentShow";
+import { TutorList } from "./tutor/TutorList";
+import { TutorCreate } from "./tutor/TutorCreate";
+import { TutorEdit } from "./tutor/TutorEdit";
+import { TutorShow } from "./tutor/TutorShow";
 import { CourseList } from "./course/CourseList";
 import { CourseCreate } from "./course/CourseCreate";
 import { CourseEdit } from "./course/CourseEdit";
 import { CourseShow } from "./course/CourseShow";
-import { MessageList } from "./message/MessageList";
-import { MessageCreate } from "./message/MessageCreate";
-import { MessageEdit } from "./message/MessageEdit";
-import { MessageShow } from "./message/MessageShow";
+import { EnrollmentList } from "./enrollment/EnrollmentList";
+import { EnrollmentCreate } from "./enrollment/EnrollmentCreate";
+import { EnrollmentEdit } from "./enrollment/EnrollmentEdit";
+import { EnrollmentShow } from "./enrollment/EnrollmentShow";
 import { ChatList } from "./chat/ChatList";
 import { ChatCreate } from "./chat/ChatCreate";
 import { ChatEdit } from "./chat/ChatEdit";
 import { ChatShow } from "./chat/ChatShow";
+import { MessageList } from "./message/MessageList";
+import { MessageCreate } from "./message/MessageCreate";
+import { MessageEdit } from "./message/MessageEdit";
+import { MessageShow } from "./message/MessageShow";
 import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
@@ -41,6 +41,10 @@ import { LessonList } from "./lesson/LessonList";
 import { LessonCreate } from "./lesson/LessonCreate";
 import { LessonEdit } from "./lesson/LessonEdit";
 import { LessonShow } from "./lesson/LessonShow";
+import { NonAvailabilityList } from "./nonAvailability/NonAvailabilityList";
+import { NonAvailabilityCreate } from "./nonAvailability/NonAvailabilityCreate";
+import { NonAvailabilityEdit } from "./nonAvailability/NonAvailabilityEdit";
+import { NonAvailabilityShow } from "./nonAvailability/NonAvailabilityShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -68,13 +72,6 @@ const App = (): React.ReactElement => {
         loginPage={Login}
       >
         <Resource
-          name="Tutor"
-          list={TutorList}
-          edit={TutorEdit}
-          create={TutorCreate}
-          show={TutorShow}
-        />
-        <Resource
           name="Student"
           list={StudentList}
           edit={StudentEdit}
@@ -82,11 +79,11 @@ const App = (): React.ReactElement => {
           show={StudentShow}
         />
         <Resource
-          name="Enrollment"
-          list={EnrollmentList}
-          edit={EnrollmentEdit}
-          create={EnrollmentCreate}
-          show={EnrollmentShow}
+          name="Tutor"
+          list={TutorList}
+          edit={TutorEdit}
+          create={TutorCreate}
+          show={TutorShow}
         />
         <Resource
           name="Course"
@@ -96,11 +93,11 @@ const App = (): React.ReactElement => {
           show={CourseShow}
         />
         <Resource
-          name="Message"
-          list={MessageList}
-          edit={MessageEdit}
-          create={MessageCreate}
-          show={MessageShow}
+          name="Enrollment"
+          list={EnrollmentList}
+          edit={EnrollmentEdit}
+          create={EnrollmentCreate}
+          show={EnrollmentShow}
         />
         <Resource
           name="Chat"
@@ -108,6 +105,13 @@ const App = (): React.ReactElement => {
           edit={ChatEdit}
           create={ChatCreate}
           show={ChatShow}
+        />
+        <Resource
+          name="Message"
+          list={MessageList}
+          edit={MessageEdit}
+          create={MessageCreate}
+          show={MessageShow}
         />
         <Resource
           name="User"
@@ -129,6 +133,13 @@ const App = (): React.ReactElement => {
           edit={LessonEdit}
           create={LessonCreate}
           show={LessonShow}
+        />
+        <Resource
+          name="NonAvailability"
+          list={NonAvailabilityList}
+          edit={NonAvailabilityEdit}
+          create={NonAvailabilityCreate}
+          show={NonAvailabilityShow}
         />
       </Admin>
     </div>

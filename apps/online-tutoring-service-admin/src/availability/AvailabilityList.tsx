@@ -21,6 +21,7 @@ export const AvailabilityList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <DateField source="createdAt" label="Created At" />
+        <TextField label="dayOfWeek" source="dayOfWeek" />
         <TextField label="endTime" source="endTime" />
         <TextField label="ID" source="id" />
         <TextField label="startTime" source="startTime" />

@@ -11,8 +11,15 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsOptional, IsString, ValidateNested } from "class-validator";
+import {
+  IsDate,
+  IsEnum,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from "class-validator";
 import { Type } from "class-transformer";
+import { EnumAvailabilityDayOfWeek } from "./EnumAvailabilityDayOfWeek";
 import { Tutor } from "../../tutor/base/Tutor";
 
 @ObjectType()
@@ -24,6 +31,17 @@ class Availability {
   @Type(() => Date)
   @Field(() => Date)
   createdAt!: Date;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumAvailabilityDayOfWeek,
+  })
+  @IsEnum(EnumAvailabilityDayOfWeek)
+  @IsOptional()
+  @Field(() => EnumAvailabilityDayOfWeek, {
+    nullable: true,
+  })
+  dayOfWeek?: "Option1" | null;
 
   @ApiProperty({
     required: false,

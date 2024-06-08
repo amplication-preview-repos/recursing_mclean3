@@ -42,6 +42,7 @@ export class AvailabilityControllerBase {
       },
       select: {
         createdAt: true,
+        dayOfWeek: true,
         endTime: true,
         id: true,
         startTime: true,
@@ -68,6 +69,7 @@ export class AvailabilityControllerBase {
       ...args,
       select: {
         createdAt: true,
+        dayOfWeek: true,
         endTime: true,
         id: true,
         startTime: true,
@@ -93,6 +95,7 @@ export class AvailabilityControllerBase {
       where: params,
       select: {
         createdAt: true,
+        dayOfWeek: true,
         endTime: true,
         id: true,
         startTime: true,
@@ -135,6 +138,7 @@ export class AvailabilityControllerBase {
         },
         select: {
           createdAt: true,
+          dayOfWeek: true,
           endTime: true,
           id: true,
           startTime: true,
@@ -169,6 +173,7 @@ export class AvailabilityControllerBase {
         where: params,
         select: {
           createdAt: true,
+          dayOfWeek: true,
           endTime: true,
           id: true,
           startTime: true,

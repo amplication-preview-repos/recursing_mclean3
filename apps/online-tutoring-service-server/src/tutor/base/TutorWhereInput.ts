@@ -16,6 +16,7 @@ import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { StringFilter } from "../../util/StringFilter";
 import { LessonListRelationFilter } from "../../lesson/base/LessonListRelationFilter";
+import { NonAvailabilityListRelationFilter } from "../../nonAvailability/base/NonAvailabilityListRelationFilter";
 
 @InputType()
 class TutorWhereInput {
@@ -53,6 +54,18 @@ class TutorWhereInput {
     nullable: true,
   })
   lessons?: LessonListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => NonAvailabilityListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => NonAvailabilityListRelationFilter)
+  @IsOptional()
+  @Field(() => NonAvailabilityListRelationFilter, {
+    nullable: true,
+  })
+  nonAvailabilities?: NonAvailabilityListRelationFilter;
 }
 
 export { TutorWhereInput as TutorWhereInput };

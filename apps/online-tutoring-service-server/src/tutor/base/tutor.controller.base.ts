@@ -28,6 +28,9 @@ import { AvailabilityWhereUniqueInput } from "../../availability/base/Availabili
 import { LessonFindManyArgs } from "../../lesson/base/LessonFindManyArgs";
 import { Lesson } from "../../lesson/base/Lesson";
 import { LessonWhereUniqueInput } from "../../lesson/base/LessonWhereUniqueInput";
+import { NonAvailabilityFindManyArgs } from "../../nonAvailability/base/NonAvailabilityFindManyArgs";
+import { NonAvailability } from "../../nonAvailability/base/NonAvailability";
+import { NonAvailabilityWhereUniqueInput } from "../../nonAvailability/base/NonAvailabilityWhereUniqueInput";
 
 export class TutorControllerBase {
   constructor(protected readonly service: TutorService) {}
@@ -144,6 +147,7 @@ export class TutorControllerBase {
       ...query,
       select: {
         createdAt: true,
+        dayOfWeek: true,
         endTime: true,
         id: true,
         startTime: true,
@@ -294,6 +298,90 @@ export class TutorControllerBase {
   ): Promise<void> {
     const data = {
       lessons: {
+        disconnect: body,
+      },
+    };
+    await this.service.updateTutor({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Get("/:id/nonAvailabilities")
+  @ApiNestedQuery(NonAvailabilityFindManyArgs)
+  async findNonAvailabilities(
+    @common.Req() request: Request,
+    @common.Param() params: TutorWhereUniqueInput
+  ): Promise<NonAvailability[]> {
+    const query = plainToClass(NonAvailabilityFindManyArgs, request.query);
+    const results = await this.service.findNonAvailabilities(params.id, {
+      ...query,
+      select: {
+        createdAt: true,
+        date: true,
+        endTime: true,
+        id: true,
+        startTime: true,
+
+        tutor: {
+          select: {
+            id: true,
+          },
+        },
+
+        updatedAt: true,
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/nonAvailabilities")
+  async connectNonAvailabilities(
+    @common.Param() params: TutorWhereUniqueInput,
+    @common.Body() body: NonAvailabilityWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      nonAvailabilities: {
+        connect: body,
+      },
+    };
+    await this.service.updateTutor({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/nonAvailabilities")
+  async updateNonAvailabilities(
+    @common.Param() params: TutorWhereUniqueInput,
+    @common.Body() body: NonAvailabilityWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      nonAvailabilities: {
+        set: body,
+      },
+    };
+    await this.service.updateTutor({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/nonAvailabilities")
+  async disconnectNonAvailabilities(
+    @common.Param() params: TutorWhereUniqueInput,
+    @common.Body() body: NonAvailabilityWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      nonAvailabilities: {
         disconnect: body,
       },
     };
